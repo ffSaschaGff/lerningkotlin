@@ -14,17 +14,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val id = intent.getLongExtra("parent_id", 0)
+        val id = intent.getIntExtra("parent_id", 0)
         val dbHelper = DBHelper(applicationContext)
         val cursor = dbHelper.getCursorArticleByParent(id)
-        val adapter = SimpleCursorAdapter(applicationContext,android.R.layout.two_line_list_item,cursor, arrayOf(DBTables.Articles.COLUMN_TITLE), intArrayOf(android.R.id.text1),0)
+        val adapter = MainListAdapter(applicationContext,R.layout.list_item,cursor, arrayOf(DBTables.Articles.COLUMN_TITLE), intArrayOf(android.R.id.text1),0,id)
         val list = findViewById<ListView>(R.id.main_list)
+
         list.adapter = adapter
 
-        list.setOnItemClickListener(MainListClickLisner(this))
+        //list.setOnItemClickListener(MainListClickLisner(this))
     }
 
-    class MainListClickLisner(private val activity: MainActivity) : AdapterView.OnItemClickListener {
+    /*class MainListClickLisner(private val activity: MainActivity) : AdapterView.OnItemClickListener {
         override fun onItemClick(p0: AdapterView<*>?, p1: View?, pos: Int, id: Long) {
             if (DBHelper(activity).getArticleIsArticle(id)) {
                 val intent = Intent(activity, ArticleActivity::class.java)
@@ -37,5 +38,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-    }
+    }*/
 }

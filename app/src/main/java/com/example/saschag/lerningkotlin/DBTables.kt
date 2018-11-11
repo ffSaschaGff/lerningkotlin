@@ -3,7 +3,7 @@ package com.example.saschag.lerningkotlin
 import android.provider.BaseColumns
 
 object DBTables {
-    class Articles : BaseColumns {
+    class Articles {
         companion object {
             val TABLE_NAME = "ARTIKLES"
             val COLUMN_ID = "_id"
@@ -12,6 +12,12 @@ object DBTables {
             val COLUMN_IS_ARTICLE = "_is_article"
             val COLUMN_PARENT = "_parent_id"
             val COLUMN_SORT = "_sort_field"
+        }
+    }
+    class Favorits {
+        companion object {
+            val TABLE_NAME = "FAVORITES"
+            val COLUMN_ID = "_id_fav"
         }
     }
 }
